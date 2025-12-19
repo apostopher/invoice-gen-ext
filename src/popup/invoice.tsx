@@ -403,7 +403,10 @@ export function InvoicePdf(props: BreakdownWithDates) {
             </Text>
           </View>
           <View style={styles.row}>
-            <Text>42% (GST inclusive) of collection after lab bills</Text>
+            <Text>
+              42% (GST included, superannuation included) of collection after
+              lab bills
+            </Text>
             <Text style={styles.valueSpan}>
               {formatCurrency(props.providerShareGross)}
             </Text>
@@ -417,9 +420,6 @@ export function InvoicePdf(props: BreakdownWithDates) {
             </Text>
             <Text style={[styles.noticeText, styles.noticeMargin]}>
               Dr. Cunningham may claim the GST credit in their BAS.
-            </Text>
-            <Text style={styles.noticeText}>
-              Superannuation is managed by Dr. Cunningham.
             </Text>
           </View>
           <View style={styles.footerRightSection}>

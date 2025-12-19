@@ -45,23 +45,41 @@ function App() {
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label>
           <span className="label-text">Start Date</span>
-          <input type="date" className="input-num" {...register("startDate")} />
+          <input
+            type="date"
+            required
+            className="input-num"
+            {...register("startDate")}
+          />
         </label>
         <label>
           <span className="label-text">End Date</span>
-          <input type="date" className="input-num" {...register("endDate")} />
+          <input
+            type="date"
+            required
+            className="input-num"
+            {...register("endDate")}
+          />
         </label>
         <label>
           <span className="label-text">Total Collection</span>
           <input
-            type="number"
             className="input-num"
+            type="number"
+            required
+            step="0.01"
             {...register("totalCollection")}
           />
         </label>
         <label>
           <span className="label-text">Lab Fees</span>
-          <input type="number" className="input-num" {...register("labFees")} />
+          <input
+            type="number"
+            step="0.01"
+            required
+            className="input-num"
+            {...register("labFees")}
+          />
         </label>
         <button className="submit-btn" type="submit">
           Calculate
@@ -74,7 +92,7 @@ function App() {
             <dd className="result-value">
               {formatCurrency(result.receiptsAfterLab)}
             </dd>
-            <dt>Provider Share Gross</dt>
+            <dt>Provider Share 42%</dt>
             <dd className="result-value">
               {formatCurrency(result.providerShareGross)}
             </dd>
