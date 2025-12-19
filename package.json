@@ -1,0 +1,31 @@
+{
+  "name": "calc-ext",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite build --watch & node scripts/copy-manifest.mjs --watch",
+    "build": "vite build && node scripts/copy-manifest.mjs"
+  },
+  "keywords": [],
+  "author": "Rahul Devaskar (https://apostopher.com/)",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@types/chrome": "0.1.32",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.2",
+    "typescript": "5.9.3",
+    "vite": "7.3.0"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "4.3.1",
+    "date-fns": "4.1.0",
+    "lucide-react": "0.562.0",
+    "react": "19.2.3",
+    "react-aria-components": "1.14.0",
+    "react-dom": "19.2.3",
+    "react-hook-form": "7.68.0"
+  }
+}

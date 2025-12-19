@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Invoice Generator",
+  "version": "0.0.1",
+  "description": "Invoice Generator",
+  "action": { "default_popup": "src/popup/index.html" },
+  "permissions": ["downloads"],
+  "host_permissions": [],
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
+}
