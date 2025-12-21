@@ -349,6 +349,13 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: colors.slate12,
   },
+  itemSup: {
+    fontSize: 8,
+    fontFamily: "Inter",
+    fontWeight: "bold",
+    textAlignVertical: "top",
+    color: colors.slate12,
+  },
 });
 
 export function InvoicePdf(props: BreakdownWithDates) {
@@ -404,8 +411,8 @@ export function InvoicePdf(props: BreakdownWithDates) {
           </View>
           <View style={styles.row}>
             <Text>
-              42% (GST included, superannuation included) of collection after
-              lab bills
+              42% of collection after lab bills
+              <Text style={styles.itemSup}>*</Text>
             </Text>
             <Text style={styles.valueSpan}>
               {formatCurrency(props.providerShareGross)}
@@ -421,6 +428,10 @@ export function InvoicePdf(props: BreakdownWithDates) {
             <Text style={[styles.noticeText, styles.noticeMargin]}>
               Dr. Cunningham may claim the GST credit in their BAS.
             </Text>
+            <Text style={styles.noticeText}>
+              <Text style={styles.itemSup}>*</Text> 42% includes superannuation
+              & GST.
+            </Text>
           </View>
           <View style={styles.footerRightSection}>
             <View style={styles.summaryTable}>
@@ -431,7 +442,7 @@ export function InvoicePdf(props: BreakdownWithDates) {
                 </Text>
               </View>
               <View style={[styles.footerRow, styles.rowBorder]}>
-                <Text>GST withheld</Text>
+                <Text>GST withheld (10%)</Text>
                 <Text style={styles.valueSpan}>
                   {formatCurrency(0 - props.gstComponent)}
                 </Text>

@@ -34,11 +34,14 @@ type FormData = {
   labFees: string;
 };
 function App() {
-  const [result, setResult] = React.useState<BreakdownWithDates | null>(null);
   const { register, handleSubmit } = useForm<FormData>();
   const onSubmit = (data: FormData) => {
     const result = calculateProviderFees(+data.totalCollection, +data.labFees);
-    setResult({ ...result, startDate: data.startDate, endDate: data.endDate });
+    downloadFeesPdf({
+      ...result,
+      startDate: data.startDate,
+      endDate: data.endDate,
+    });
   };
   return (
     <div style={{ fontFamily: "system-ui", padding: 12, width: 260 }}>
@@ -48,6 +51,12 @@ function App() {
           <input
             type="date"
             required
+            onInput={(event) => event.currentTarget.setCustomValidity("")}
+            onInvalid={(event) =>
+              event.currentTarget.setCustomValidity(
+                "Please enter a valid start date"
+              )
+            }
             className="input-num"
             {...register("startDate")}
           />
@@ -57,6 +66,12 @@ function App() {
           <input
             type="date"
             required
+            onInput={(event) => event.currentTarget.setCustomValidity("")}
+            onInvalid={(event) =>
+              event.currentTarget.setCustomValidity(
+                "Please enter a valid end date"
+              )
+            }
             className="input-num"
             {...register("endDate")}
           />
@@ -68,6 +83,13 @@ function App() {
             type="number"
             required
             step="0.01"
+            min="0"
+            onInput={(event) => event.currentTarget.setCustomValidity("")}
+            onInvalid={(event) =>
+              event.currentTarget.setCustomValidity(
+                "Please enter a valid total collection amount"
+              )
+            }
             {...register("totalCollection")}
           />
         </label>
@@ -77,42 +99,21 @@ function App() {
             type="number"
             step="0.01"
             required
+            min="0"
+            onInput={(event) => event.currentTarget.setCustomValidity("")}
+            onInvalid={(event) =>
+              event.currentTarget.setCustomValidity(
+                "Please enter a valid lab fees amount"
+              )
+            }
             className="input-num"
             {...register("labFees")}
           />
         </label>
         <button className="submit-btn" type="submit">
-          Calculate
+          Generate PDF
         </button>
       </form>
-      {result && (
-        <div className="result-container">
-          <dl className="result-list">
-            <dt>Receipts After Lab</dt>
-            <dd className="result-value">
-              {formatCurrency(result.receiptsAfterLab)}
-            </dd>
-            <dt>Provider Share 42%</dt>
-            <dd className="result-value">
-              {formatCurrency(result.providerShareGross)}
-            </dd>
-            <dt>GST Withheld</dt>
-            <dd className="result-value">
-              {formatCurrency(0 - result.gstComponent)}
-            </dd>
-            <dt>Provider Net Payable</dt>
-            <dd className="result-value">
-              {formatCurrency(result.providerNetPayable)}
-            </dd>
-          </dl>
-          <button
-            className="submit-btn"
-            onClick={() => downloadFeesPdf(result)}
-          >
-            generate pdf
-          </button>
-        </div>
-      )}
     </div>
   );
 }

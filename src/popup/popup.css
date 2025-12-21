@@ -1,3 +1,6 @@
+body {
+  position: relative;
+}
 .wrap {
   font: 14px system-ui;
   padding: 12px;
@@ -32,8 +35,10 @@ button {
   appearance: none;
   margin: 0;
 
-  &:focus {
-    outline: none;
+  &:focus-visible {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: hsl(0 0 0 / 0.5);
     border-color: #000;
   }
 }
@@ -50,6 +55,18 @@ button {
   transition: background-color 0.3s ease;
   &:hover {
     background-color: #111;
+    transition: transform 0.3s ease;
+  }
+  &:focus-visible {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: hsl(0 0 0 / 0.8);
+    outline-offset: 2px;
+    border-color: #000;
+  }
+  &:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
   }
 }
 
@@ -79,4 +96,12 @@ button {
   font-size: 14px;
   font-weight: bold;
   text-align: right;
+}
+
+input::selection {
+  background-color: hsl(0 0 0 / 0.2);
+}
+
+.root {
+  isolation: isolate;
 }
